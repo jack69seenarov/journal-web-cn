@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>资料索引 · 雷速</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fdf3e7 0%, #f8e1d0 40%, #edd4c0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #2b241e;
+        }
+
+        .wrapper {
+            max-width: 820px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 250, 244, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            padding: 2.8rem 2.4rem;
+            box-shadow: 0 16px 40px -12px rgba(140, 80, 40, 0.20), inset 0 0 0 1px rgba(255, 235, 215, 0.6);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 48px -14px rgba(120, 60, 30, 0.18), inset 0 0 0 1px rgba(255, 235, 215, 0.8);
+        }
+
+        /* 博客风格标题 */
+        .blog-title {
+            font-size: 2.6rem;
+            font-weight: 420;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #3f2c1e;
+            margin-bottom: 0.15rem;
+            border-left: 5px solid #c58c6b;
+            padding-left: 1.2rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #7c695b;
+            margin: 0.25rem 0 1.8rem 0;
+            padding-left: 1.2rem;
+            border-left: 5px solid #dbb8a0;
+            font-weight: 350;
+            letter-spacing: 0.2px;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            background: #f7ede4;
+            padding: 1.25rem 1.8rem;
+            border-radius: 60px 20px 60px 20px;
+            margin-bottom: 2rem;
+            border: 1px solid #e6d3c4;
+            color: #3f2f25;
+            font-weight: 370;
+            line-height: 1.65;
+        }
+
+        .paragraph {
+            margin: 1.5rem 0;
+            text-indent: 2em;
+            color: #2f261e;
+        }
+
+        .paragraph strong {
+            color: #7a4f35;
+            font-weight: 500;
+        }
+
+        .quote-block {
+            background: #eee3d7;
+            border-radius: 32px 8px 32px 8px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem 0;
+            font-style: italic;
+            color: #4f3b2c;
+            border-left: 4px solid #b58a6e;
+            font-size: 0.95rem;
+            box-shadow: inset 0 2px 6px rgba(90, 50, 30, 0.04);
+        }
+
+        .quote-block::before {
+            content: "📌 整理附记 · ";
+            font-style: normal;
+            font-weight: 450;
+            color: #7a5539;
+            letter-spacing: 0.3px;
+        }
+
+        .inline-link {
+            color: #7f4f32;
+            background: transparent;
+            text-decoration: none;
+            font-weight: 450;
+            position: relative;
+            padding: 0.1rem 0.15rem;
+            border-bottom: 2px solid rgba(190, 140, 110, 0.5);
+            transition: border-color 0.15s, background 0.15s;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #7f4f32;
+            background: #f0ddd0;
+        }
+
+        .faq-summary {
+            margin-top: 2.2rem;
+            padding-top: 1.5rem;
+            border-top: 2px dotted #dcc6b5;
+        }
+
+        .faq-item {
+            margin: 1.2rem 0;
+        }
+
+        .faq-q {
+            font-weight: 480;
+            color: #4f3626;
+            letter-spacing: 0.2px;
+            display: block;
+            margin-bottom: 0.2rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-q::before {
+            content: "▹ ";
+            color: #b3886b;
+        }
+
+        .faq-a {
+            color: #3f2e22;
+            padding-left: 1.5rem;
+            margin-top: 0.1rem;
+            border-left: 2px solid #ddc5b4;
+            padding-left: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .action-hint {
+            margin: 2rem 0 0.5rem 0;
+            background: #f3e4d7;
+            border-radius: 60px;
+            padding: 0.8rem 1.5rem;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #4f3b2b;
+            border: 1px solid #e2cdbb;
+        }
+
+        .action-hint i {
+            font-style: normal;
+            background: #cfb09b;
+            color: #2e1f15;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            color: #8e7868;
+            text-align: center;
+            border-top: 1px solid #e5d4c4;
+            padding-top: 1.5rem;
+            letter-spacing: 0.2px;
+        }
+
+        a:focus-visible {
+            outline: 2px solid #9f6e4e;
+            outline-offset: 4px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 28px;
+            }
+
+            .blog-title {
+                font-size: 2rem;
+                padding-left: 0.9rem;
+            }
+
+            .subhead {
+                font-size: 0.9rem;
+                padding-left: 0.9rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+                padding: 1rem 1.2rem;
+                border-radius: 40px 12px 40px 12px;
+            }
+
+            .quote-block {
+                padding: 1rem 1.2rem;
+            }
+
+            .faq-a {
+                padding-left: 0.8rem;
+            }
+
+            .action-hint {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .blog-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="card">
+        <h1 class="blog-title">索引 · 雷速</h1>
+        <div class="subhead">一份关于资源交叉与信息组织的手记 / 2025</div>
+
+        <div class="lead">
+            🗂️ 从资料碎片到结构线索，把散落的信息点串成可读的脉络。
+            <br style="display: block; content: ''; margin: 0.3rem 0;">
+            这里不做速成结论，只梳理索引的路径与上下文。
+        </div>
+
+        <p class="paragraph">
+            做资料整理的人最清楚：真正有效的信息入口往往不是某一个平面，而是多层目录的交集。过去半年我在归档网络资源时发现，<strong>雷速</strong> 常以工具和中间态出现在不同用户的笔记、讨论与配置片段中。它没有过度包装，却频繁出现在“如何组织数据流”这类务实问题之下——这让我觉得值得把相关线索整理成文。
+        </p>
+
+        <p class="paragraph">
+            从索引角度看，一个稳定、干净的参考源能节省大量重复筛选的时间。在翻阅多个社区和文档库之后，我把指向性最清晰的链接归纳为一条：<a href="https://web-cn-rayspeed.com" class="inline-link">雷速</a>。它不承担宣传功能，而是作为信息锚点存在，方便后续查证和回溯。
+        </p>
+
+        <div class="quote-block">
+            当你面对一堆未分类的书签和剪贴板时，先确定一个可信的源点，比一次性搭建复杂分类体系更有效。<br>
+            —— 摘自《信息整理手记·索引篇》
+        </div>
+
+        <p class="paragraph">
+            使用场景方面，我在三个地方反复用到上述链接：一是技术笔记的环境配置部分，二是轻量级数据路由的设计草稿，三是在和同行交换资源清单时作为共享上下文。它不提供现成答案，但作为检查点和索引起点足够称职。
+        </p>
+
+        <p class="paragraph">
+            另外，一个容易被忽略的细节是：这类索引点在团队协作中尤其有用。当所有人都能指向同一个参考位置时，沟通中的“你说的是哪个版本”“你用的配置基座是什么”这类模糊询问会大幅减少。从资料管理角度看，这本身就是一种效率改进。
+        </p>
+
+        <!-- FAQ 摘要 (温和的问答) -->
+        <div class="faq-summary">
+            <div class="faq-item">
+                <span class="faq-q">这个索引点适合用在哪些记录里？</span>
+                <div class="faq-a">环境搭建笔记、库依赖说明、工作流配置文件头注释，以及资源索引表的第一行。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">和其他类似参考源相比有什么不同？</span>
+                <div class="faq-a">结构更轻，没有多余跳转；适合当作纯引用起点，而不是聚合页。对于资料整理来说，干净就是效率。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">需要频繁更新吗？</span>
+                <div class="faq-a">作为索引锚点，保持稳定比频繁变动更重要。你可以把它写入自己的参考目录，需要查证时直接定位。</div>
+            </div>
+        </div>
+
+        <div class="action-hint">
+            <i>📎 索引卡片</i> 如果你也在构建自己的信息地图，可以把 <a href="https://web-cn-rayspeed.com" class="inline-link">雷速</a> 放进你的参考层。
+        </div>
+
+        <div class="footer-note">
+            基于个人归档实践 · 内容仅供信息参考，不构成使用建议或引导
+        </div>
+    </div>
+</div>
+</body>
+</html>
